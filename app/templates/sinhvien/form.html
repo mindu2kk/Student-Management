@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ 'Edit' if obj else 'New' }} SinhVien</h2>
+<form method="post">
+  {% if not obj %}
+  <div class="mb-3">
+    <label class="form-label">MaSinhVien</label>
+    <input class="form-control" name="MaSinhVien" required>
+  </div>
+  {% endif %}
+  <div class="mb-3">
+    <label class="form-label">HoTen</label>
+    <input class="form-control" name="HoTen" value="{{ obj.HoTen if obj }}" required>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <label class="form-label">NgaySinh</label>
+      <input class="form-control" name="NgaySinh" type="date" value="{{ obj.NgaySinh if obj and obj.NgaySinh }}">
+    </div>
+    <div class="col-md-4 mb-3">
+      <label class="form-label">GioiTinh</label>
+      <input class="form-control" name="GioiTinh" value="{{ obj.GioiTinh if obj }}">
+    </div>
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Lop</label>
+      <select class="form-select" name="Lop">
+        <option value="">(none)</option>
+        {% for l in lops %}
+        <option value="{{ l.MaLop }}" {% if obj and obj.Lop==l.MaLop %}selected{% endif %}>{{ l.MaLop }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label class="form-label">Email</label>
+      <input class="form-control" name="Email" value="{{ obj.Email if obj }}">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="form-label">SDT</label>
+      <input class="form-control" name="SDT" value="{{ obj.SDT if obj }}">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label class="form-label">CCCD</label>
+      <input class="form-control" name="CCCD" value="{{ obj.CCCD if obj }}">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="form-label">DiaChi</label>
+      <input class="form-control" name="DiaChi" value="{{ obj.DiaChi if obj }}">
+    </div>
+  </div>
+  <button class="btn btn-primary">Save</button>
+  <a class="btn btn-secondary" href="/sinhviens">Cancel</a>
+ </form>
+{% endblock %}
+
+

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Lop</h2>
+  <a class="btn btn-primary" href="/lops/new">New</a>
+  </div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>MaLop</th>
+      <th>PhongHocChinh</th>
+      <th>Khoa</th>
+      <th>SiSo</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in items %}
+    <tr>
+      <td>{{ i.MaLop }}</td>
+      <td>{{ i.PhongHocChinh }}</td>
+      <td>{{ i.Khoa }}</td>
+      <td>{{ i.SiSo }}</td>
+      <td class="text-end">
+        <a class="btn btn-sm btn-secondary" href="/lops/{{ i.MaLop }}/edit">Edit</a>
+        <form action="/lops/{{ i.MaLop }}/delete" method="post" class="d-inline">
+          <button class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+ </table>
+{% endblock %}
+
+

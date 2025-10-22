@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Khoa</h2>
+  <a class="btn btn-primary" href="/khoas/new">New</a>
+  </div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>MaKhoa</th>
+      <th>TenKhoa</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in items %}
+    <tr>
+      <td>{{ i.MaKhoa }}</td>
+      <td>{{ i.TenKhoa }}</td>
+      <td class="text-end">
+        <a class="btn btn-sm btn-secondary" href="/khoas/{{ i.MaKhoa }}/edit">Edit</a>
+        <form action="/khoas/{{ i.MaKhoa }}/delete" method="post" class="d-inline">
+          <button class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+ </table>
+{% endblock %}
+
+

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ 'Edit' if obj else 'New' }} Lop</h2>
+<form method="post">
+  {% if not obj %}
+  <div class="mb-3">
+    <label class="form-label">MaLop</label>
+    <input class="form-control" name="MaLop" required>
+  </div>
+  {% endif %}
+  <div class="mb-3">
+    <label class="form-label">PhongHocChinh</label>
+    <input class="form-control" name="PhongHocChinh" value="{{ obj.PhongHocChinh if obj }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Khoa</label>
+    <select class="form-select" name="Khoa" required>
+      {% for k in khoas %}
+      <option value="{{ k.MaKhoa }}" {% if obj and obj.Khoa==k.MaKhoa %}selected{% endif %}>{{ k.TenKhoa }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">SiSo</label>
+    <input class="form-control" name="SiSo" type="number" min="0" value="{{ obj.SiSo if obj else 0 }}">
+  </div>
+  <button class="btn btn-primary">Save</button>
+  <a class="btn btn-secondary" href="/lops">Cancel</a>
+ </form>
+{% endblock %}
+
+
